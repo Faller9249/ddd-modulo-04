@@ -1,5 +1,6 @@
-import type { UniqueEntityID } from '../../core/entity/unique-entity-id.js'
+import type { UniqueEntityID } from '@/core/entity/unique-entity-id.js'
 import type { Slug } from './value-objects/slug.js'
+import type { Question } from './question.js'
 
 export interface StudentProps {
   name: string
@@ -25,4 +26,14 @@ export interface AnswerProps {
   content: string
   createdAt: Date
   updatedAt?: Date
+}
+
+export interface CreateQuestionUseCaseRequest {
+  authorId: string
+  title: string
+  content: string
+}
+
+export interface CreateQuestionUseCaseResponse {
+  question: Question
 }

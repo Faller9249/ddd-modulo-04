@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Faller9249/ddd-modulo-04#readme",
   "devDependencies": {
+    "@faker-js/faker": "^10.0.0",
     "@rocketseat/eslint-config": "^2.2.2",
     "@types/node": "^24.5.2",
     "eslint": "^8.57.1",

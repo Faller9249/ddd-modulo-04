@@ -2,6 +2,8 @@ import type { UniqueEntityID } from '@/core/entity/unique-entity-id.js'
 import type { Slug } from '../modules/forum/enterprise/entities/value-objects/slug.js'
 import type { Question } from '../modules/forum/enterprise/entities/question.js'
 import type { Answer } from '../modules/forum/enterprise/entities/answer.js'
+import type { QuestionComment } from '@/modules/forum/enterprise/entities/question-comment.js'
+import type { AnswerComment } from '@/modules/forum/enterprise/entities/answer-comment.js'
 
 export interface StudentProps {
   name: string
@@ -57,7 +59,6 @@ export interface GetQuestionBySlugUseCaseResponse {
 }
 
 export interface FetchRecentQuestionsUseCaseRequest {
-  questionId: string
   page: number
 }
 
@@ -117,3 +118,37 @@ export interface ChooseQuestionBestAnswerUseCaseRequest {
 export interface ChooseQuestionBestAnswerUseCaseResponse {
   question: Question
 }
+
+export interface CommentOnQuestionUseCaseRequest {
+  authorId: string
+  questionId: string
+  content: string
+}
+
+export interface CommentOnQuestionUseCaseResponse {
+  questionComment: QuestionComment
+}
+
+export interface DeleteQuestionCommentUseCaseRequest {
+  authorId: string
+  questionCommentId: string
+}
+
+export interface CommentOnAnswerUseCaseRequest {
+  authorId: string
+  answerId: string
+  content: string
+}
+
+export interface CommentOnAnswerUseCaseResponse {
+  answerComment: AnswerComment
+}
+
+export interface DeleteQuestionCommentUseCaseResponse {}
+
+export interface DeleteAnswerCommentUseCaseRequest {
+  authorId: string
+  answerCommentId: string
+}
+
+export interface DeleteAnswerCommentUseCaseResponse {}

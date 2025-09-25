@@ -8,13 +8,9 @@ export class FetchRecentQuestionsUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
 
   async execute({
-    questionId,
     page,
   }: FetchRecentQuestionsUseCaseRequest): Promise<FetchRecentQuestionsUseCaseResponse> {
-    const questions = await this.questionsRepository.findManyRecent(
-      questionId,
-      page,
-    )
+    const questions = await this.questionsRepository.findManyRecent({ page })
 
     return {
       questions,

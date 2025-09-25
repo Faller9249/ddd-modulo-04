@@ -13,13 +13,13 @@ describe('Fetch Recent Questions', () => {
 
   it('should be able to fetch recent questions', async () => {
     await inMemoryQuestionsRepository.create(
+      makeQuestion({ createdAt: new Date(2022, 0, 23) }),
+    )
+    await inMemoryQuestionsRepository.create(
       makeQuestion({ createdAt: new Date(2022, 0, 20) }),
     )
     await inMemoryQuestionsRepository.create(
-      makeQuestion({ createdAt: new Date(2022, 0, 18) }),
-    )
-    await inMemoryQuestionsRepository.create(
-      makeQuestion({ createdAt: new Date(2022, 0, 23) }),
+      makeQuestion({ createdAt: new Date(2022, 0, 1) }),
     )
 
     const { questions } = await sut.execute({
@@ -29,7 +29,7 @@ describe('Fetch Recent Questions', () => {
     expect(questions).toEqual([
       expect.objectContaining({ createdAt: new Date(2022, 0, 23) }),
       expect.objectContaining({ createdAt: new Date(2022, 0, 20) }),
-      expect.objectContaining({ createdAt: new Date(2022, 0, 18) }),
+      expect.objectContaining({ createdAt: new Date(2022, 0, 1) }),
     ])
   })
 

@@ -1,14 +1,15 @@
 import { UniqueEntityID } from '@/core/entity/unique-entity-id.js'
-import { makeAnswer } from 'test/factomake-answer.js'
+import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answers-repository.js'
+import { FetchQuestionAnswersUseCase } from './fetch-questions.js'
+import { makeAnswer } from 'test/factories/make-answer.js'
 
-let inMemoryAnswersRepository: InMemoryAnswersRepositoryryAnswersRepository
-let sut: FetchQuestionAnswersUseCaseUseCase
+let inMemoryAnswersRepository: InMemoryAnswersRepository
+let sut: FetchQuestionAnswersUseCase
 
 describe('Fetch Question Answers', () => {
   beforeEach(() => {
-    inMemoryAnswersRepository =
-      new InMemoryAnswersRepositoryyAnswersRepository()
-    sut = new FetchQuestionAnswersUseCaseCase(inMemoryAnswersRepository)
+    inMemoryAnswersRepository = new InMemoryAnswersRepository()
+    sut = new FetchQuestionAnswersUseCase(inMemoryAnswersRepository)
   })
 
   it('should be able to fetch question answers', async () => {

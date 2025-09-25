@@ -4,6 +4,9 @@ import type { Question } from '../modules/forum/enterprise/entities/question.js'
 import type { Answer } from '../modules/forum/enterprise/entities/answer.js'
 import type { QuestionComment } from '@/modules/forum/enterprise/entities/question-comment.js'
 import type { AnswerComment } from '@/modules/forum/enterprise/entities/answer-comment.js'
+import type { Either } from '@/core/either.js'
+import type { ResourceNotFoundError } from '@/modules/forum/application/use-cases/errors/resource-not-found-error.js'
+import type { NotAllowedError } from '@/modules/forum/application/use-cases/errors/not-allowed-error.js'
 
 export interface StudentProps {
   name: string
@@ -151,4 +154,7 @@ export interface DeleteAnswerCommentUseCaseRequest {
   answerCommentId: string
 }
 
-export interface DeleteAnswerCommentUseCaseResponse {}
+export type DeleteAnswerCommentUseCaseResponse = Either<
+  ResourceNotFoundError | NotAllowedError,
+  object
+>

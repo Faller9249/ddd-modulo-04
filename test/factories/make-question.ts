@@ -3,6 +3,7 @@ import { faker } from '@faker-js/faker'
 import { UniqueEntityID } from '@/core/entity/unique-entity-id.js'
 import type { QuestionProps } from '@/@types/@entities.model.js'
 import { Question } from '@/modules/forum/enterprise/entities/question.js'
+
 export function makeQuestion(
   override: Partial<QuestionProps> = {},
   id?: UniqueEntityID,
@@ -12,7 +13,8 @@ export function makeQuestion(
       authorId: new UniqueEntityID(),
       title: faker.lorem.sentence(),
       content: faker.lorem.text(),
-      ...override,
+      createdAt: new Date(), // valor padrão
+      ...override, // override sempre ganha
     },
     id,
   )

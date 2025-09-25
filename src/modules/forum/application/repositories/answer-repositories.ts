@@ -3,7 +3,10 @@ import type { Answer } from '../../enterprise/entities/answer.js'
 
 export interface AnswersRepository {
   findById(id: string): Promise<Answer | null>
-  findManyByQTopicId(params: PaginationParams): Promise<Answer[]>
+  findManyByQuestionId(
+    questionId: string,
+    params: PaginationParams,
+  ): Promise<Answer[]>
   create(answer: Answer): Promise<void>
   save(answer: Answer): Promise<void>
   delete(answer: Answer): Promise<void>

@@ -3,10 +3,12 @@ import type { AnswersRepository } from '@/modules/forum/application/repositories
 import type { Answer } from '@/modules/forum/enterprise/entities/answer.js'
 
 export class InMemoryAnswersRepository implements AnswersRepository {
-  async findManyByQTopicId(params: PaginationParams): Promise<Answer[]> {
-    const answers = this.items
-      .filter((item) => item.questionId.toString() === )
+  async findManyRecent({ page }: PaginationParams) {
+    const questions = this.items
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+      .slice((page - 1) * 20, page * 20)
+
+    return questions
   }
 
   async findById(id: string) {
@@ -20,6 +22,14 @@ export class InMemoryAnswersRepository implements AnswersRepository {
   }
 
   public items: Answer[] = []
+
+  async findManyByQuestionId(questionId: string, { page }: PaginationParams) {
+    const answers = this.items
+      .filter((item) => item.questionId.toString() === questionId)
+      .slice((page - 1) * 20, page * 20)
+
+    return answers
+  }
 
   async create(answer: Answer) {
     this.items.push(answer)

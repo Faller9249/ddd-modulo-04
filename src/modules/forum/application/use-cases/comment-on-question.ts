@@ -7,6 +7,8 @@ import type {
   CommentOnQuestionUseCaseRequest,
   CommentOnQuestionUseCaseResponse,
 } from '@/@types/@entities.model.js'
+import { left, right } from '@/core/either.js'
+import { ResourceNotFoundError } from './errors/resource-not-found-error.js'
 
 export class CommentOnQuestionUseCase {
   constructor(
@@ -22,7 +24,7 @@ export class CommentOnQuestionUseCase {
     const question = await this.questionsRepository.findById(questionId)
 
     if (!question) {
-      throw new Error('Question not found.')
+      return left(new ResourceNotFoundError())
     }
 
     const questionComment = QuestionComment.create({
@@ -33,8 +35,8 @@ export class CommentOnQuestionUseCase {
 
     await this.questionCommentsRepository.create(questionComment)
 
-    return {
+    return right({
       questionComment,
-    }
+    })
   }
 }

@@ -1,23 +1,23 @@
 import { expect, it } from 'vitest'
-import { CreateQuestionUseCase } from './create-question.js'
-import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questions-repository.js'
+import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answers-repository.js'
+import { AnswerQuestionUseCase } from './answer-question.js'
 
-let inMemoryQuestionsRepository: InMemoryQuestionsRepository
-let sut: CreateQuestionUseCase
+let inMemoryAnswersRepository: InMemoryAnswersRepository
+let sut: AnswerQuestionUseCase
 
 describe('Create Question', () => {
   beforeEach(() => {
-    inMemoryQuestionsRepository = new InMemoryQuestionsRepository()
-    sut = new CreateQuestionUseCase(inMemoryQuestionsRepository)
+    inMemoryAnswersRepository = new InMemoryAnswersRepository()
+    sut = new AnswerQuestionUseCase(inMemoryAnswersRepository)
   })
   it('should be able to create a question', async () => {
-    const { question } = await sut.execute({
-      authorId: '1',
-      title: 'Nova pergunta',
+    const result = await sut.execute({
+      instructorId: '1',
+      questionId: '1',
       content: 'Conteúdo da pergunta',
     })
 
-    expect(question.id).toBeTruthy()
-    expect(inMemoryQuestionsRepository.items[0]?.id).toEqual(question.id)
+    expect(result.isRight()).toBe(true)
+    expect(inMemoryAnswersRepository.items[0]).toEqual(result.value?.answer)
   })
 })

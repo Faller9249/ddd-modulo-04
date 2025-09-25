@@ -5,6 +5,7 @@ import type {
   AnswerQuestionUseCaseRequest,
   AnswerQuestionUseCaseResponse,
 } from '../../../../@types/@entities.model.js'
+import { right } from '@/core/either.js'
 
 export class AnswerQuestionUseCase {
   constructor(private answerRepository: AnswersRepository) {}
@@ -22,8 +23,8 @@ export class AnswerQuestionUseCase {
 
     await this.answerRepository.create(answer)
 
-    return {
+    return right({
       answer,
-    }
+    })
   }
 }

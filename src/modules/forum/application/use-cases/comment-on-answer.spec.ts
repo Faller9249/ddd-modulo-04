@@ -29,7 +29,7 @@ describe('Comment on Answer', () => {
       content: 'Comentário teste',
     })
 
-    expect(inMemoryAnswerCommentsRepository.items[0].content).toEqual(
+    expect(inMemoryAnswerCommentsRepository.items[0]?.content).toEqual(
       'Comentário teste',
     )
   })

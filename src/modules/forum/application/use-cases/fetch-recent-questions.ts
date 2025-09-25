@@ -3,6 +3,7 @@ import type {
   FetchRecentQuestionsUseCaseResponse,
 } from '@/@types/@entities.model.js'
 import type { QuestionsRepository } from '../repositories/question-repositories.js'
+import { right } from '@/core/either.js'
 
 export class FetchRecentQuestionsUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
@@ -12,8 +13,8 @@ export class FetchRecentQuestionsUseCase {
   }: FetchRecentQuestionsUseCaseRequest): Promise<FetchRecentQuestionsUseCaseResponse> {
     const questions = await this.questionsRepository.findManyRecent({ page })
 
-    return {
+    return right({
       questions,
-    }
+    })
   }
 }

@@ -5,6 +5,7 @@ import type {
 } from '../../../../@types/@entities.model.js'
 import { Question } from '../../enterprise/entities/question.js'
 import type { QuestionsRepository } from '../repositories/question-repositories.js'
+import { right } from '@/core/either.js'
 
 export class CreateQuestionUseCase {
   constructor(private questionRepository: QuestionsRepository) {}
@@ -22,8 +23,8 @@ export class CreateQuestionUseCase {
 
     await this.questionRepository.create(question)
 
-    return {
+    return right({
       question,
-    }
+    })
   }
 }

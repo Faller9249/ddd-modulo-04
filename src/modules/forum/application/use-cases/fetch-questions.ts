@@ -3,6 +3,7 @@ import type {
   FetchQuestionAnswersUseCaseResponse,
 } from '@/@types/@entities.model.js'
 import type { AnswersRepository } from '../repositories/answer-repositories.js'
+import { right } from '@/core/either.js'
 export class FetchQuestionAnswersUseCase {
   constructor(private answersRepository: AnswersRepository) {}
 
@@ -15,8 +16,8 @@ export class FetchQuestionAnswersUseCase {
       { page },
     )
 
-    return {
+    return right({
       answers,
-    }
+    })
   }
 }

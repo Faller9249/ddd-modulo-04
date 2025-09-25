@@ -1,14 +1,9 @@
-import type { AnswerComment } from '../../enterprise/entities/answer-comment.js'
 import type { AnswerCommentsRepository } from '../repositories/answer-comments-repositories.js'
-
-interface FetchAnswerCommentsUseCaseRequest {
-  answerId: string
-  page: number
-}
-
-interface FetchAnswerCommentsUseCaseResponse {
-  answerComments: AnswerComment[]
-}
+import type {
+  FetchAnswerCommentsUseCaseRequest,
+  FetchAnswerCommentsUseCaseResponse,
+} from '@/@types/@entities.model.js'
+import { right } from '@/core/either.js'
 
 export class FetchAnswerCommentsUseCase {
   constructor(private answerCommentsRepository: AnswerCommentsRepository) {}
@@ -22,8 +17,8 @@ export class FetchAnswerCommentsUseCase {
         page,
       })
 
-    return {
+    return right({
       answerComments,
-    }
+    })
   }
 }

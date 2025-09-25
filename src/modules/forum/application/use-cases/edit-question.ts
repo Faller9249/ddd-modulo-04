@@ -3,6 +3,7 @@ import type {
   EditQuestionUseCaseResponse,
 } from '@/@types/@entities.model.js'
 import type { QuestionsRepository } from '../repositories/question-repositories.js'
+import { right } from '@/core/either.js'
 
 export class EditQuestionUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
@@ -28,8 +29,8 @@ export class EditQuestionUseCase {
 
     await this.questionsRepository.save(question)
 
-    return {
+    return right({
       question,
-    }
+    })
   }
 }

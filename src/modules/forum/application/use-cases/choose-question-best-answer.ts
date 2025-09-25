@@ -4,6 +4,9 @@ import type {
 } from '@/@types/@entities.model.js'
 import type { AnswersRepository } from '../repositories/answer-repositories.js'
 import type { QuestionsRepository } from '../repositories/question-repositories.js'
+import { left, right } from '@/core/either.js'
+import { ResourceNotFoundError } from './errors/resource-not-found-error.js'
+import { NotAllowedError } from './errors/not-allowed-error.js'
 
 export class ChooseQuestionBestAnswerUseCase {
   constructor(
@@ -18,7 +21,7 @@ export class ChooseQuestionBestAnswerUseCase {
     const answer = await this.answersRepository.findById(answerId)
 
     if (!answer) {
-      throw new Error('Answer not found.')
+      return left(new ResourceNotFoundError())
     }
 
     const question = await this.questionsRepository.findById(
@@ -30,15 +33,15 @@ export class ChooseQuestionBestAnswerUseCase {
     }
 
     if (authorId !== question.authorId.toString()) {
-      throw new Error('Not allowed.')
+      return left(new NotAllowedError())
     }
 
     question.bestAnswerId = answer.id
 
     await this.questionsRepository.save(question)
 
-    return {
+    return right({
       question,
-    }
+    })
   }
 }

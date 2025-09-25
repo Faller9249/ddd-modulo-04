@@ -1,13 +1,8 @@
-import type { Question } from '../../enterprise/entities/question.js'
+import type {
+  GetQuestionBySlugUseCaseRequest,
+  GetQuestionBySlugUseCaseResponse,
+} from '../../../../@types/@entities.model.js'
 import type { QuestionsRepository } from '../repositories/question-repositories.js'
-
-interface GetQuestionBySlugUseCaseRequest {
-  slug: string
-}
-
-interface GetQuestionBySlugUseCaseResponse {
-  question: Question
-}
 
 export class GetQuestionBySlugUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}

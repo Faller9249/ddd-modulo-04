@@ -2,7 +2,7 @@ import { UniqueEntityID } from '@/core/entity/unique-entity-id.js'
 import type {
   CreateQuestionUseCaseRequest,
   CreateQuestionUseCaseResponse,
-} from '../../enterprise/entities/@entities.model.js'
+} from '../../../../@types/@entities.model.js'
 import { Question } from '../../enterprise/entities/question.js'
 import type { QuestionsRepository } from '../repositories/question-repositories.js'
 

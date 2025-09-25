@@ -2,7 +2,7 @@ import { Entity } from '@/core/entity/entity.js'
 import type { UniqueEntityID } from '@/core/entity/unique-entity-id.js'
 import type { Optional } from '@/core/types/optional.js'
 
-import type { AnswerProps } from './@entities.model.js'
+import type { AnswerProps } from '../../../../@types/@entities.model.js'
 
 export class Answer extends Entity<AnswerProps> {
   get authorId() {

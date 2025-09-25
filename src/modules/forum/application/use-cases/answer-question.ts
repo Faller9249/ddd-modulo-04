@@ -1,16 +1,10 @@
 import { UniqueEntityID } from '@/core/entity/unique-entity-id.js'
 import { Answer } from '../../enterprise/entities/answer.js'
 import type { AnswersRepository } from '../repositories/answer-repositories.js'
-
-interface AnswerQuestionUseCaseRequest {
-  instructorId: string
-  questionId: string
-  content: string
-}
-
-interface AnswerQuestionUseCaseResponse {
-  answer: Answer
-}
+import type {
+  AnswerQuestionUseCaseRequest,
+  AnswerQuestionUseCaseResponse,
+} from '../../../../@types/@entities.model.js'
 
 export class AnswerQuestionUseCase {
   constructor(private answerRepository: AnswersRepository) {}

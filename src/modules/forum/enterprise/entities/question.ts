@@ -5,7 +5,7 @@ import type { Optional } from '@/core/types/optional.js'
 import { Entity } from '@/core/entity/entity.js'
 import { Slug } from './value-objects/slug.js'
 
-import type { QuestionProps } from './@entities.model.js'
+import type { QuestionProps } from '../../../../@types/@entities.model.js'
 
 export class Question extends Entity<QuestionProps> {
   get authorId() {

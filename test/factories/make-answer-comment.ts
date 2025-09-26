@@ -3,8 +3,8 @@ import { faker } from '@faker-js/faker'
 import { UniqueEntityID } from '@/core/entity/unique-entity-id.js'
 
 import {
-  AnswerComment,
   type AnswerCommentProps,
+  AnswerComment,
 } from '@/modules/forum/enterprise/entities/answer-comment.js'
 
 export function makeAnswerComment(

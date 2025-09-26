@@ -36,7 +36,7 @@ describe('Delete Question Comment', () => {
     await inMemoryQuestionCommentsRepository.create(questionComment)
 
     const result = await sut.execute({
-      questionCommentId: 'question-comment-1',
+      questionCommentId: questionComment.id.toString(), // pega o id real
       authorId: 'author-2',
     })
 

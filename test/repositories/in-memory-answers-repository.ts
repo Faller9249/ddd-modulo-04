@@ -1,8 +1,13 @@
 import type { PaginationParams } from '@/core/repository/pagination-params.js'
+import type { AnswerAttachmentsRepository } from '@/modules/forum/application/repositories/answer-attachments-repository.js'
 import type { AnswersRepository } from '@/modules/forum/application/repositories/answer-repositories.js'
 import type { Answer } from '@/modules/forum/enterprise/entities/answer.js'
 
 export class InMemoryAnswersRepository implements AnswersRepository {
+  constructor(
+    private answerAttachmentsRepository: AnswerAttachmentsRepository,
+  ) {}
+
   async findManyRecent({ page }: PaginationParams) {
     const questions = this.items
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
@@ -45,5 +50,6 @@ export class InMemoryAnswersRepository implements AnswersRepository {
     const itemIndex = this.items.findIndex((item) => item.id === answer.id)
 
     this.items.splice(itemIndex, 1)
+    this.answerAttachmentsRepository.deleteManyByAnswerId(answer.id.toString())
   }
 }

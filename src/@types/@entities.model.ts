@@ -7,6 +7,8 @@ import type { AnswerComment } from '@/modules/forum/enterprise/entities/answer-c
 import type { Either } from '@/core/either.js'
 import type { ResourceNotFoundError } from '@/modules/forum/application/use-cases/errors/resource-not-found-error.js'
 import type { NotAllowedError } from '@/modules/forum/application/use-cases/errors/not-allowed-error.js'
+import type { QuestionAttachmentList } from '@/modules/forum/enterprise/entities/question-attachment-list.js'
+import type { AnswerAttachmentList } from '@/modules/forum/enterprise/entities/answer-attachment-list.js'
 
 export interface StudentProps {
   name: string
@@ -22,6 +24,7 @@ export interface QuestionProps {
   title: string
   content: string
   slug: Slug
+  attachments: QuestionAttachmentList
   createdAt: Date
   updatedAt?: Date
 }
@@ -30,6 +33,7 @@ export interface AnswerProps {
   authorId: UniqueEntityID
   questionId: UniqueEntityID
   content: string
+  attachments: AnswerAttachmentList
   createdAt: Date
   updatedAt?: Date
 }
@@ -38,10 +42,12 @@ export interface CreateQuestionUseCaseRequest {
   authorId: string
   title: string
   content: string
+  attachmentsIds: string[]
 }
 export interface AnswerQuestionUseCaseRequest {
   instructorId: string
   questionId: string
+  attachmentsIds: string[]
   content: string
 }
 
@@ -108,6 +114,7 @@ export interface EditAnswerUseCaseRequest {
   authorId: string
   answerId: string
   content: string
+  attachmentsIds: string[]
 }
 
 export interface EditQuestionUseCaseRequest {
@@ -115,6 +122,7 @@ export interface EditQuestionUseCaseRequest {
   questionId: string
   title: string
   content: string
+  attachmentsIds: string[]
 }
 
 export type EditQuestionUseCaseResponse = Either<

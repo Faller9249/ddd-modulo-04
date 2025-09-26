@@ -1,5 +1,5 @@
 import { UniqueEntityID } from '@/core/entity/unique-entity-id.js'
-import { makeAnswerComment } from 'test/factories/make-question-comment copy.js'
+import { makeAnswerComment } from 'test/factories/make-question-commenxt.js'
 import { InMemoryAnswerCommentsRepository } from 'test/repositories/in-memory-answer-comments-repository.js'
 import { FetchAnswerCommentsUseCase } from './fetch-answer-comments.js'
 
@@ -31,12 +31,12 @@ describe('Fetch Answer Comments', () => {
       }),
     )
 
-    const { answerComments } = await sut.execute({
+    const result = await sut.execute({
       answerId: 'answer-1',
       page: 1,
     })
 
-    expect(answerComments).toHaveLength(3)
+    expect(result.value?.answerComments).toHaveLength(3)
   })
 
   it('should be able to fetch paginated answer comments', async () => {
@@ -48,11 +48,11 @@ describe('Fetch Answer Comments', () => {
       )
     }
 
-    const { answerComments } = await sut.execute({
+    const result = await sut.execute({
       answerId: 'answer-1',
       page: 2,
     })
 
-    expect(answerComments).toHaveLength(2)
+    expect(result.value?.answerComments).toHaveLength(2)
   })
 })

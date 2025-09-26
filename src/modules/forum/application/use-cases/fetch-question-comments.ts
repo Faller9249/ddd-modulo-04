@@ -1,14 +1,10 @@
+import type {
+  FetchQuestionCommentsUseCaseRequest,
+  FetchQuestionCommentsUseCaseResponse,
+} from '@/@types/@entities.model.js'
 import type { QuestionComment } from '../../enterprise/entities/question-comment.js'
 import type { QuestionCommentsRepository } from '../repositories/question-comments-repository.js'
-
-interface FetchQuestionCommentsUseCaseRequest {
-  questionId: string
-  page: number
-}
-
-interface FetchQuestionCommentsUseCaseResponse {
-  questionComments: QuestionComment[]
-}
+import { right } from '@/core/either.js'
 
 export class FetchQuestionCommentsUseCase {
   constructor(private questionCommentsRepository: QuestionCommentsRepository) {}
@@ -22,8 +18,8 @@ export class FetchQuestionCommentsUseCase {
         page,
       })
 
-    return {
+    return right({
       questionComments,
-    }
+    })
   }
 }

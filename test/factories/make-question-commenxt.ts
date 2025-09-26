@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker'
+
 import { UniqueEntityID } from '@/core/entity/unique-entity-id.js'
 
 import {

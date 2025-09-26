@@ -1,14 +1,10 @@
-import type { Answer } from '../../enterprise/entities/answer.js'
+import type {
+  FetchQuestionAnswersUseCaseRequest,
+  FetchQuestionAnswersUseCaseResponse,
+} from '@/@types/@entities.model.js'
+
 import type { AnswersRepository } from '../repositories/answer-repositories.js'
-
-interface FetchQuestionAnswersUseCaseRequest {
-  questionId: string
-  page: number
-}
-
-interface FetchQuestionAnswersUseCaseResponse {
-  answers: Answer[]
-}
+import { right } from '@/core/either.js'
 
 export class FetchQuestionAnswersUseCase {
   constructor(private answersRepository: AnswersRepository) {}
@@ -22,8 +18,8 @@ export class FetchQuestionAnswersUseCase {
       { page },
     )
 
-    return {
+    return right({
       answers,
-    }
+    })
   }
 }

@@ -1,9 +1,14 @@
+import { left, right } from '@/core/either.js'
+
 import type { AnswerCommentsRepository } from '@/modules/forum/application/repositories/answer-comments-repositories.js'
 
 import type {
   DeleteAnswerCommentUseCaseRequest,
   DeleteAnswerCommentUseCaseResponse,
 } from '@/@types/@entities.model.js'
+
+import { ResourceNotFoundError } from '@/modules/forum/application/use-cases/errors/resource-not-found-error.js'
+import { NotAllowedError } from '@/modules/forum/application/use-cases/errors/not-allowed-error.js'
 
 export class DeleteAnswerCommentUseCase {
   constructor(private answerCommentsRepository: AnswerCommentsRepository) {}
@@ -16,15 +21,15 @@ export class DeleteAnswerCommentUseCase {
       await this.answerCommentsRepository.findById(answerCommentId)
 
     if (!answerComment) {
-      throw new Error('Answer comment not found.')
+      return left(new ResourceNotFoundError())
     }
 
     if (answerComment.authorId.toString() !== authorId) {
-      throw new Error('Not allowed')
+      return left(new NotAllowedError())
     }
 
     await this.answerCommentsRepository.delete(answerComment)
 
-    return {}
+    return right({})
   }
 }

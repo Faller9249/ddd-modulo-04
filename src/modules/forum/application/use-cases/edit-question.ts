@@ -8,8 +8,8 @@ import type { QuestionAttachmentsRepository } from '../repositories/question-att
 import { UniqueEntityID } from '@/core/entity/unique-entity-id.js'
 import { QuestionAttachmentList } from '../../enterprise/entities/question-attachment-list.js'
 import { QuestionAttachment } from '../../enterprise/entities/question-attachment.js'
-import { NotAllowedError } from './errors/not-allowed-error.js'
-import { ResourceNotFoundError } from './errors/resource-not-found-error.js'
+import { NotAllowedError } from '@/core/errors/not-allowed-error.js'
+import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error.js'
 
 export class EditQuestionUseCase {
   constructor(

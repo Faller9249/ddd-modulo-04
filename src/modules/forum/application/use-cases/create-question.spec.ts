@@ -2,7 +2,7 @@
 import { expect, test } from 'vitest'
 import { CreateQuestionUseCase } from './create-question.js'
 import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questions-repository.js'
-import { NotAllowedError } from './errors/not-allowed-error.js'
+import { NotAllowedError } from '@/core/errors/not-allowed-error.js'
 import { UniqueEntityID } from '@/core/entity/unique-entity-id.js'
 import { InMemoryQuestionAttachmentsRepository } from 'test/repositories/in-memory-question-attachments-repository.js'
 

@@ -8,7 +8,7 @@ import type {
   CommentOnQuestionUseCaseResponse,
 } from '@/@types/@entities.model.js'
 import { left, right } from '@/core/either.js'
-import { ResourceNotFoundError } from './errors/resource-not-found-error.js'
+import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error.js'
 
 export class CommentOnQuestionUseCase {
   constructor(

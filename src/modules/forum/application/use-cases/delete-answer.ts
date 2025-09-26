@@ -4,8 +4,8 @@ import type {
 } from '@/@types/@entities.model.js'
 import type { AnswersRepository } from '../repositories/answer-repositories.js'
 import { left, right } from '@/core/either.js'
-import { NotAllowedError } from './errors/not-allowed-error.js'
-import { ResourceNotFoundError } from './errors/resource-not-found-error.js'
+import { NotAllowedError } from '@/core/errors/not-allowed-error.js'
+import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error.js'
 
 export class DeleteAnswerUseCase {
   constructor(private answersRepository: AnswersRepository) {}

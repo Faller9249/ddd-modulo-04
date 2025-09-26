@@ -3,8 +3,8 @@ import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questio
 import { EditQuestionUseCase } from './edit-question.js'
 import { UniqueEntityID } from '@/core/entity/unique-entity-id.js'
 import { makeQuestionAttachment } from 'test/factories/make-question-attachments.js'
-import { makeQuestion } from 'test/repositories/make-question.js'
-import { NotAllowedError } from './errors/not-allowed-error.js'
+import { NotAllowedError } from '@/core/errors/not-allowed-error.js'
+import { makeQuestion } from 'test/factories/make-question.js'
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository

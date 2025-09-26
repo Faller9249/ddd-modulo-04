@@ -7,8 +7,8 @@ import type {
   DeleteAnswerCommentUseCaseResponse,
 } from '@/@types/@entities.model.js'
 
-import { ResourceNotFoundError } from '@/modules/forum/application/use-cases/errors/resource-not-found-error.js'
-import { NotAllowedError } from '@/modules/forum/application/use-cases/errors/not-allowed-error.js'
+import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error.js'
+import { NotAllowedError } from '@/core/errors/not-allowed-error.js'
 
 export class DeleteAnswerCommentUseCase {
   constructor(private answerCommentsRepository: AnswerCommentsRepository) {}

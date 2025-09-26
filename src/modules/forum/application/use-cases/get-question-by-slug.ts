@@ -4,7 +4,7 @@ import type {
   GetQuestionBySlugUseCaseResponse,
 } from '../../../../@types/@entities.model.js'
 import type { QuestionsRepository } from '../repositories/question-repositories.js'
-import { ResourceNotFoundError } from './errors/resource-not-found-error.js'
+import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error.js'
 
 export class GetQuestionBySlugUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}

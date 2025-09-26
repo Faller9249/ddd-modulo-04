@@ -1,7 +1,7 @@
 import { InMemoryQuestionCommentsRepository } from 'test/repositories/in-memory-question-comments-repository.js'
 import { DeleteQuestionCommentUseCase } from './delete-question-comment.js'
 import { UniqueEntityID } from '@/core/entity/unique-entity-id.js'
-import { NotAllowedError } from './errors/not-allowed-error.js'
+import { NotAllowedError } from '@/core/errors/not-allowed-error.js'
 import { makeQuestionComment } from 'test/factories/make-question-commenxt.js'
 
 let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository

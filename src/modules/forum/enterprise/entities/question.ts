@@ -6,6 +6,7 @@ import { Slug } from './value-objects/slug.js'
 
 import type { QuestionProps } from '../../../../@types/@entities.model.js'
 import { AggregateRoot } from '@/core/entity/aggregate-root.js'
+import { QuestionBestAnswerChosenEvent } from '../events/question-best-answer-chosen-event.js'
 import { QuestionAttachmentList } from './question-attachment-list.js'
 
 export class Question extends AggregateRoot<QuestionProps> {
@@ -72,10 +73,18 @@ export class Question extends AggregateRoot<QuestionProps> {
 
   set bestAnswerId(bestAnswerId: UniqueEntityID | undefined) {
     if (bestAnswerId === undefined) {
-      delete this.props.bestAnswerId
-    } else {
-      this.props.bestAnswerId = bestAnswerId
+      return
     }
+
+    if (
+      this.props.bestAnswerId === undefined ||
+      !bestAnswerId.equals(this.props.bestAnswerId)
+    ) {
+      this.addDomainEvent(new QuestionBestAnswerChosenEvent(this, bestAnswerId))
+    }
+
+    this.props.bestAnswerId = bestAnswerId
+
     this.touch()
   }
 
